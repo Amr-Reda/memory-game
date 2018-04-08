@@ -4,8 +4,8 @@
 
 * [Description](#description)
 * [Installtion](#installtion)
-* [How to play](#how to play)
-* [Known bugs](#known bugs)
+* [How to play](#how-to-play)
+* [Known bugs](#known-bugs)
 * [Requirement](#requirement)
 
 ## Description

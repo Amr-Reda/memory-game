@@ -27,7 +27,14 @@ let timeSection=document.querySelector('.secondsNumber');
 
 
 // start timer
-window.setInterval(timeCounter, 1000);
+let interval;
+var click=0;
+function start(){
+  if (click == 0) {
+      interval = window.setInterval(timeCounter, 1000);
+      click++;
+  }
+}
 
 // restart the game when the page load or reset button clicked
 restart.addEventListener('click', resetGame);
@@ -44,6 +51,7 @@ for(var i=0;i<cardList.length;i++){
 
 // the logic and actions of the game
 function actions(){
+  start();
   var element=window.event.target;
 
   if(!element.classList.contains('open') && element.tagName=="LI"){
@@ -71,31 +79,28 @@ function actions(){
         openList[1].classList.add('match');
         openList.pop();
         openList.pop();
+        counter++;
       }
       else{
         openList[0].classList.add('wrong');
         openList[1].classList.add('wrong');
+        counter++;
       }
     }
 
-    counter++;
     move.innerText=counter;
   }
 
-  if(counter==28){
+  if(counter==10){
     stars[0].setAttribute('style','visibility:hidden;');
     starsNumber=2;
   }
 
-  else if (counter==35) {
+  else if (counter==15) {
     stars[1].setAttribute('style','visibility:hidden;');
     starsNumber=1;
   }
 
-  else if (counter==40) {
-    stars[2].setAttribute('style','visibility:hidden;');
-    starsNumber=0;
-  }
   checkWin();
 
 }
@@ -103,7 +108,6 @@ function actions(){
 
 //when play again
 function playAgain(){
- gameSection.setAttribute('style','display:flex;');
  winSection.setAttribute('style','display:none;');
  resetGame();
 }
@@ -120,7 +124,7 @@ function checkWin() {
   movesSection.innerText=counter;
   starsSection.innerText=starsNumber;
   timeSection.innerText=time;
-  gameSection.setAttribute('style','display:none;');
+  window.clearInterval(interval);
   winSection.setAttribute('style','display:flex;');
 }
 
@@ -133,15 +137,21 @@ function timeCounter() {
  timer.innerText=time;
 }
 
+
+
+
 // function for restart
 function resetGame(){
 
   counter=0;
+  click=0;
+  window.clearInterval(interval);
   time=0;
   move.innerText=counter;
+  timer.innerText=time;
   arrayCard=shuffle(arrayCard);
 
-  for (var j = 0; j < arrayCard.length; j++) {
+  for (var j = 0; j < cardList.length; j++) {
     deck.removeChild(cardList[j]);
   }
 
@@ -158,6 +168,10 @@ function resetGame(){
     cardList[i].classList.remove('match');
     cardList[i].classList.remove('open');
     cardList[i].classList.remove('wrong');
+  }
+
+  for (var i = 0; i <= openList.length; i++) {
+    openList.pop();
   }
 
 }

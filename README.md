@@ -2,11 +2,11 @@
 
 ## Table of Contents
 
-* [Description](#Description)
-* [Installtion](#Installtion)
-* [How to play](#How to play)
-* [Known bugs](#Known bugs)
-* [Requirement](#Requirement)
+* [Description](#description)
+* [Installtion](#installtion)
+* [How to play](#how to play)
+* [Known bugs](#known bugs)
+* [Requirement](#requirement)
 
 ## Description
 
@@ -14,9 +14,9 @@ This ia a simple javaScript game that contain 16 cards every card has a it simil
 
 ## Installtion
 
-1.download the files
-2.ectract the files
-3.open index.html
+1. download the files
+2. ectract the files
+3. open index.html
 
 ## How to play
 

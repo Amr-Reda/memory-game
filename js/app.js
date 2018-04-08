@@ -5,14 +5,16 @@
 //   var cardList = document.querySelectorAll('.card');
 //   cardList[i].classList;
 // }
+
+// initialize the variable
 let counter=0;
 let time=0;
+let starsNumber=3;
 let openList= new Array();
+let arrayCard = new Array();
 let timer=document.querySelector('.timer');
 let move=document.querySelector('.moves');
 let stars=document.querySelectorAll('.fa-star');
-let starsNumber=3;
-let arrayCard = new Array();
 let cardList = document.querySelectorAll('.card');
 let restart=document.querySelector('#restart');
 let deck = document.querySelector('#deck');
@@ -23,14 +25,91 @@ let movesSection=document.querySelector('.movesNumber');
 let starsSection=document.querySelector('.starsNumber');
 let timeSection=document.querySelector('.secondsNumber');
 
-btn.addEventListener('click', function(){
-  gameSection.setAttribute('style','display:flex;');
-  winSection.setAttribute('style','display:none;');
-  resetGame();
-});
 
+// start timer
 window.setInterval(timeCounter, 1000);
 
+// restart the game when the page load or reset button clicked
+restart.addEventListener('click', resetGame);
+window.addEventListener('load',resetGame);
+
+//listener to play again button
+btn.addEventListener('click',playAgain);
+
+// add listener to all cards
+for(var i=0;i<cardList.length;i++){
+  arrayCard[i]=cardList[i];
+  arrayCard[i].addEventListener('click', actions);
+}
+
+// the logic and actions of the game
+function actions(){
+  var element=window.event.target;
+
+  if(!element.classList.contains('open') && element.tagName=="LI"){
+    element.classList.add('show');
+    element.classList.add('open');
+    openList.push(element);
+
+    if (openList.length==3) {
+      openList[0].classList.remove('show');
+      openList[0].classList.remove('open');
+      openList[0].classList.remove('wrong');
+      openList[1].classList.remove('wrong');
+      openList[1].classList.remove('show');
+      openList[1].classList.remove('open');
+      openList.reverse();
+      openList.pop();
+      openList.pop();
+    }
+
+    if (openList.length==2) {
+      var firstCard=openList[0].firstElementChild.classList;
+      var secondCard=openList[1].firstElementChild.classList;
+      if(firstCard[1] === secondCard[1]){
+        openList[0].classList.add('match');
+        openList[1].classList.add('match');
+        openList.pop();
+        openList.pop();
+      }
+      else{
+        openList[0].classList.add('wrong');
+        openList[1].classList.add('wrong');
+      }
+    }
+
+    counter++;
+    move.innerText=counter;
+  }
+
+  if(counter==28){
+    stars[0].setAttribute('style','visibility:hidden;');
+    starsNumber=2;
+  }
+
+  else if (counter==35) {
+    stars[1].setAttribute('style','visibility:hidden;');
+    starsNumber=1;
+  }
+
+  else if (counter==40) {
+    stars[2].setAttribute('style','visibility:hidden;');
+    starsNumber=0;
+  }
+  checkWin();
+
+}
+
+
+//when play again
+function playAgain(){
+ gameSection.setAttribute('style','display:flex;');
+ winSection.setAttribute('style','display:none;');
+ resetGame();
+}
+
+
+// function to check for winning
 function checkWin() {
   for (var i = 0; i < cardList.length; i++) {
     if (!cardList[i].classList.contains('match')) {
@@ -45,74 +124,16 @@ function checkWin() {
   winSection.setAttribute('style','display:flex;');
 }
 
-for(var i=0;i<cardList.length;i++){
- arrayCard[i]=cardList[i];
- arrayCard[i].addEventListener('click', function(){
-   var element=window.event.target;
-
-   if(!element.classList.contains('open') && element.tagName=="LI"){
-   element.classList.add('show');
-   element.classList.add('open');
-   openList.push(element);
-
-   if (openList.length==3) {
-     openList[0].classList.remove('show');
-     openList[0].classList.remove('open');
-     openList[0].classList.remove('wrong');
-     openList[1].classList.remove('wrong');
-     openList[1].classList.remove('show');
-     openList[1].classList.remove('open');
-     openList.reverse();
-     openList.pop();
-     openList.pop();
-   }
-
-   if (openList.length==2) {
-     var firstCard=openList[0].firstElementChild.classList;
-     var secondCard=openList[1].firstElementChild.classList;
-     if(firstCard[1] === secondCard[1]){
-     openList[0].classList.add('match');
-     openList[1].classList.add('match');
-     openList.pop();
-     openList.pop();
-     }
-     else{
-       openList[0].classList.add('wrong');
-       openList[1].classList.add('wrong');
-     }
-   }
-
-   counter++;
-   move.innerText=counter;
- }
-
-   if(counter==28){
-     stars[0].setAttribute('style','visibility:hidden;');
-     starsNumber=2;
-   }
-
-   else if (counter==35) {
-     stars[1].setAttribute('style','visibility:hidden;');
-     starsNumber=1;
-   }
-
-   else if (counter==40) {
-     stars[2].setAttribute('style','visibility:hidden;');
-     starsNumber=0;
-   }
-   checkWin();
-
- });
-}
 
 
-
+// function for timer
 
 function timeCounter() {
  time++;
  timer.innerText=time;
 }
 
+// function for restart
 function resetGame(){
 
   counter=0;
@@ -141,8 +162,6 @@ function resetGame(){
 
 }
 
-restart.addEventListener('click', resetGame);
-window.addEventListener('load',resetGame);
 
 /*
  * Display the cards on the page

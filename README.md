@@ -2,19 +2,34 @@
 
 ## Table of Contents
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+* [Description](#Description)
+* [Installtion](#Installtion)
+* [How to play](#How to play)
+* [Known bugs](#Known bugs)
+* [Requirement](#Requirement)
 
-## Instructions
+## Description
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+This ia a simple javaScript game that contain 16 cards every card has a it similar card with same shape and your object to match between them
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Installtion
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+1.download the files
+2.ectract the files
+3.open index.html
 
-## Contributing
+## How to play
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+you should click on the cards to show what every card contain ,then use your memory to match between cards with minimum moves and time
+if you made much moves your star rate will decrease
+to restart the game press on the icon that exist at top right of screen
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Known bugs
+
+the game when you open it may be slow if the bandwidth of the network is low
+and can affeect on the icon of cards
+
+## Requirement
+
+should be internet connection to run the game well!

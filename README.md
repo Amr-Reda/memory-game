@@ -2,19 +2,11 @@
 
 ## Table of Contents
 
-<<<<<<< HEAD
-* [Description](#Description)
-* [Installtion](#Installtion)
-* [How to play](#How-to-play)
-* [Known bugs](#Known-bugs)
-* [Requirement](#Requirement)
-=======
 * [Description](#description)
 * [Installtion](#installtion)
 * [How to play](#how-to-play)
 * [Known bugs](#known-bugs)
 * [Requirement](#requirement)
->>>>>>> origin/master
 
 ## Description
 

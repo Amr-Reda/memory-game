@@ -10,7 +10,7 @@
 
 ## Description
 
-This ia a simple javaScript game that contain 16 cards every card has a it similar card with same shape and your object to match between them
+This ia a simple javaScript game that contain 16 cards every card has a it similar card with same shape and your object to match between them [click here for demo](https://amr-reda.github.io/memory-game/)
 
 ## Installtion
 
